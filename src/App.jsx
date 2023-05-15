@@ -1,10 +1,11 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
 import { Routes, Route } from 'react-router-dom'
 import { CalendarPage, CreatePostPage, InsightsPage, LandingPage, LoginPage, ManagementPage, NotFoundPage, RegisterPage } from './pages'
 import { isAuth } from './features/auth/authSlice'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import ProtectedRoute from './utils/ProtectedRoute'
-import { ToastContainer, toast } from 'react-toastify'
+// import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
