@@ -1,0 +1,548 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.sono {
+  font-family: "Sono", sans-serif;
+}
+.serif {
+  font-family: "PT Serif", serif;
+}
+.tajawal {
+  font-family: "Tajawal", sans-serif;
+}
+
+*:focus {
+  outline: none;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+::-webkit-scrollbar {
+  display: none;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+:root {
+  --mainColor: black;
+  --mainColorAlter: rgb(31, 29, 29);
+  --purple: #d644d6;
+  --thridColor: white;
+  --padding: 30px;
+  --mainSectionPadding: 100px;
+  --transitionDuration: 0.5s;
+  --grayColor: rgb(59, 58, 58);
+}
+html {
+  scroll-behavior: smooth;
+}
+
+ul {
+  list-style: none;
+}
+.main-container {
+  padding-bottom: var(--mainSectionPadding);
+  padding-top: var(--mainSectionPadding);
+  max-width: 100%;
+}
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding: 30px;
+}
+.main-heading {
+  width: fit-content;
+  margin: auto;
+  color: var(--thridColor);
+  border: 2px solid var(--thridColor);
+  padding: 15px 20px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  position: relative;
+  margin-bottom: 40px;
+}
+.main-heading::after {
+  content: "";
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: var(--purple);
+  position: absolute;
+  left: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: -1;
+}
+
+.main-heading::before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: var(--purple);
+  position: absolute;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: -1;
+}
+.main-heading:hover::after {
+  animation: for-left 0.5s linear forwards;
+}
+.main-heading:hover::before {
+  animation: for-right 0.5s linear forwards;
+}
+.main-heading:hover {
+  transition-delay: 0.2s;
+  color: var(--mainColor);
+  border-color: var(--mainColor);
+}
+@keyframes for-left {
+  50% {
+    left: 0px;
+  }
+  100% {
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    border-radius: 0%;
+  }
+}
+@keyframes for-right {
+  50% {
+    right: 0px;
+  }
+  100% {
+    right: 0px;
+    height: 100%;
+    width: 100%;
+    border-radius: 0%;
+  }
+}
+/* Small */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+/* Medium */
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+/* Large */
+@media (min-width: 1200px) {
+  .container {
+    width: 1130px;
+  }
+}
+body,
+html {
+  background-color: black;
+}
+/* start hero section  */
+.landing {
+  padding: var(--padding);
+  width: 100%;
+  height: 92vh;
+  position: relative;
+}
+.landing .container {
+  height: 100%;
+  overflow: hidden;
+  padding-bottom: 60px;
+}
+
+.landing .container .text h1 {
+  margin-bottom: 40px;
+  color: var(--purple);
+  font-weight: 600;
+  letter-spacing: -1.4px;
+}
+.landing .container .text p {
+  color: var(--thridColor);
+  width: 510px;
+  line-height: 30px;
+  font-size: 25px;
+  text-align: justify;
+}
+.landing .container .img {
+  animation: up-down 3s alternate infinite;
+}
+.landing .container .img img {
+  width: 500px;
+}
+@keyframes up-down {
+  0% {
+    transform: translateY(-50px);
+  }
+  100% {
+    transform: translateY(20px);
+  }
+}
+@media (max-width: 1133px) {
+  .landing .container .img {
+    display: none;
+  }
+  .landing .container .text {
+    width: 100%;
+    transform: translateY(-50%);
+  }
+  .landing .container .text h1 {
+    width: fit-content;
+    max-width: 100%;
+    margin: auto;
+    font-size: 40px;
+    text-align: center;
+    line-height: 50px;
+  }
+  .landing .container .text p {
+    width: 600px;
+    max-width: 100%;
+    margin: 30px auto 0;
+    text-align: center;
+    line-height: 40px;
+    font-size: 25px;
+  }
+}
+@media (max-width: 767px) {
+  .landing .container .text h1 {
+    font-size: 28px;
+  }
+  .landing .container .text {
+    width: 100%;
+    transform: translateY(-16%);
+  }
+}
+/* end   hero section  */
+/* START FEATURE */
+.features {
+  padding-bottom: var(--mainSectionPadding);
+  padding-top: var(--mainSectionPadding);
+  max-width: 100%;
+}
+.features .container {
+  overflow: hidden;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.features .container .box {
+  width: 30%;
+  background-color: var(--mainColorAlter);
+}
+@media (max-width: 992px) {
+  .features .container .box {
+    width: 45%;
+  }
+}
+@media (max-width: 767px) {
+  .features .container .box {
+    width: 80%;
+    margin: auto;
+  }
+}
+
+.features .container .box .img {
+  max-width: 100%;
+  position: relative;
+}
+.features .container .box .img::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: rgb(214 68 214 /30%);
+  position: absolute;
+  top: 0;
+  left: 0%;
+}
+.features .container .box .img img {
+  max-width: 100%;
+}
+
+.features .container .box .content {
+  padding: 15px;
+  text-align: center;
+  position: relative;
+  z-index: 3;
+}
+.features .container .box .content::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: var(--mainColorAlter);
+  position: absolute;
+  top: -77px;
+  z-index: -1;
+  left: 0%;
+  transform: skewY(18deg);
+  transition: 0.4s;
+}
+.features .container .box:hover .content::after {
+  transform: skewY(-18deg);
+}
+@media (max-width: 767px) {
+  .features .container .box .content::after {
+    top: -100px;
+  }
+  .features .container .box:hover .content::after {
+    transform: skewY(-18deg);
+  }
+}
+.features .container .box .content h1 {
+  margin-bottom: 20px;
+  color: var(--purple);
+  text-transform: capitalize;
+  position: relative;
+}
+.features .container .box .content h1::after {
+  content: "";
+  width: 40%;
+  height: 3px;
+  background-color: var(--purple);
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.features .container .box .content p {
+  line-height: 2rem;
+  color: var(--thridColor);
+  padding: 20px 10px;
+}
+.features .container .box .content button {
+  color: var(--thridColor);
+  font-weight: 700;
+  font-size: 17px;
+  padding: 10px 30px;
+  border: 1px solid var(--thridColor);
+  border-radius: 10px;
+  background-color: transparent;
+  position: relative;
+}
+.features .container .box .content button:after {
+  content: "";
+  width: 0%;
+  height: 100%;
+  background-color: var(--purple);
+  position: absolute;
+  top: 0;
+  left: 0%;
+  border-radius: 10px;
+  z-index: -1;
+  transition: 0.4s;
+}
+.features .container .box:hover .content button {
+  border: none;
+}
+.features .container .box:hover .content button:after {
+  width: 100%;
+}
+
+.top-btn {
+  width: fit-content;
+  padding: 10px 20px;
+  position: fixed;
+  bottom: -50px;
+  left: 70px;
+  transition: 0.4s;
+  border: none;
+  border-radius: 10px;
+  text-transform: uppercase;
+  color: var(--purple);
+  background-color: var(--mainColorAlter);
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
+}
+/* END    TOP  */
+
+.heading {
+  text-align: center;
+  padding-top: 80px;
+}
+.heading h1 {
+  font-size: 42px;
+  text-transform: uppercase;
+  font-weight: normal;
+  position: relative;
+}
+.heading h1::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -17px;
+  width: 14px;
+  height: 14px;
+  background-color: white;
+  border: 1px solid var(--purple);
+  border-radius: 50%;
+}
+.heading h1::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -10px;
+  width: 114px;
+  height: 2px;
+  background-color: var(--purple);
+}
+.heading p {
+  width: 550px;
+  margin: 52px auto 74px;
+  max-width: 100%;
+  line-height: 30px;
+}
+
+/* CALENDAR */
+/* Calendar Container */
+.calendar {
+  width: 100%;
+  height: 100vh;
+  font-family: "Open Sans", sans-serif;
+  color: var(--grayColor);
+  background: rgb(214, 68, 214, 0.1);
+  color: white !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .calendar-header h2 {
+    font-size: 24px;
+  }
+
+  .calendar-header button {
+    font-size: 18px;
+  }
+
+  .calendar-table th,
+  .calendar-table td {
+    font-size: 16px;
+  }
+}
+
+/* Calendar Header */
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  max-height: 10%;
+}
+
+.calendar-header h2 {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.calendar-header button {
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  transition: all 0.2s ease-in-out;
+}
+
+.calendar-header button:hover {
+  transform: scale(1.1);
+}
+
+.calendar-header button:active {
+  transform: scale(0.9);
+}
+
+/* Popup */
+.popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* the width and the height should be fit of the content , but because there is no data now , we mad it static  */
+  width: 240px;
+  height: 250px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  transform: translate(-50%, -50%);
+}
+.posts-list {
+  max-height: 250px;
+  overflow: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.posts-list::-webkit-scrollbar {
+  display: none;
+}
+.popup-content {
+  padding: 5px;
+  color: var(--purple);
+  width: 100%;
+  height: 100%;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Calendar Table */
+
+.calendar-table {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.calendar-table table {
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+}
+
+.calendar-table th {
+  font-size: 20px;
+  background-color: var(--purple);
+  text-transform: uppercase;
+  text-align: center;
+  padding: 8px 0px;
+}
+
+.calendar-table td {
+  font-size: 20px;
+  font-weight: 800;
+  color: white;
+}
+
+.calendar-table td:hover {
+  background-color: var(--purple);
+  cursor: pointer;
+  border-radius: 8px;
+}
