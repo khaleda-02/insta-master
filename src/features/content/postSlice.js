@@ -62,7 +62,11 @@ const getPosts = createAsyncThunk('postSlice/getPosts', async (_, thunkAPI) => {
 const deletePost = createAsyncThunk('postSlice/deletePost', async ({ postId }, thunkAPI) => {
   const { rejectWithValue } = thunkAPI;
   try {
-    const { data } = await deletePostAPI(postId);
+    console.log('in updatePost thunkAPI');
+    // const { data } = await updatePostAPI();
+    setTimeout(() => {
+      logger.info('testing ');
+    }, 5000);
     return data.data;
   } catch (err) {
     if (error.response.data.message)
@@ -84,8 +88,8 @@ const postSlice = createSlice({
       })
       .addCase(createPost.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.error = null;
-        state.posts.push(payload);
+        console.log(payload);
+        // state.posts.push(payload);
       })
       .addCase(createPost.rejected, (state, { payload }) => {
         state.isLoading = false;

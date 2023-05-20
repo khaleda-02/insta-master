@@ -13,6 +13,7 @@ import {
     console.log(data);
     return data['data']['posts'];
   }
+  // getPosts(); 
   // const posts = getPosts();
   const posts = [
     {
