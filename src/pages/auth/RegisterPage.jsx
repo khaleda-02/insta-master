@@ -1,10 +1,8 @@
 import React, { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { register, registerWithGoogle } from '../../features/auth/authSlice'
+import { register } from '../../features/auth/authSlice'
 import { Input, Navbar } from '../../components/'
-import { FcGoogle } from 'react-icons/fc'
-import { BsFacebook } from 'react-icons/bs'
 
 
 
@@ -27,16 +25,12 @@ const RegisterPage = () => {
 
     dispatch(register({ username, email, password })).unwrap().then(() => { navigate('/', { replace: true }) });
 
+
     usernameRef.current.value = null;
     passwordRef.current.value = null;
     emailRef.current.value = null;
   }
 
-  const registerWithGoogleHandler = (e) => {
-    e.preventDefault();
-    dispatch(registerWithGoogle())
-      .unwrap().then(() => navigate('/', { replace: true }));
-  };
 
 
   return (
@@ -77,12 +71,6 @@ const RegisterPage = () => {
                 </div>
                 <p className='text-red-600 absolute bottom-[-20px] left-0 '>{error} </p>
               </form>
-              <div className="divider lg:divider-horizontal text-black after:bg-gray-white before:bg-gray-white">OR</div>
-              <div className='w-full md:w-[80]md:mx-auto lg:w-[40%] '>
-                <button onClick={registerWithGoogleHandler} className="btn btn-outline w-full capitalize mx-2 my-4 flex items-center justify-center gap-2"><FcGoogle size={23} /> register with goooogle </button>
-                <button className="btn btn-outline w-full capitalize mx-2 my-4 flex items-center justify-center gap-2 "><BsFacebook className='text-[#4267B2]' size={23} /> register with facebook </button>
-                <Link to="/auth/login" className="btn btn-outline w-full capitalize mx-2 my-4 flex items-center justify-center gap-2">if your are a user , login!</Link>
-              </div>
             </div>
           </div>
         </div>

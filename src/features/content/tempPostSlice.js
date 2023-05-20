@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  post: null,
+  post: {},
 };
 
 const tempPostSlice = createSlice({
@@ -9,15 +9,10 @@ const tempPostSlice = createSlice({
   initialState,
   reducers: {
     setPost: (state, { payload }) => {
-      console.log(payload, 'before setPost');
       state.post = { ...payload };
-      console.log(state.post, 'state after setPost');
-      console.log(state.post.caption, 'caption after setPost');
     },
     resetPost: (state, { payload }) => {
-      console.log(payload, 'before resetPost');
-      state.post = null;
-      console.log(payload, 'state after resetPost');
+      state.post = {};
     }
   }
 })

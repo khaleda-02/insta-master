@@ -1,11 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { loginAPI, registerAPI, loginUserWithGoogleAPI, registerUserWithGoogleAPI, logoutAPI, isAuthAPI } from '../../api/auth/auth';
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
-import { auth } from '../../utils/firebase'
+import { loginAPI, registerAPI, logoutAPI, isAuthAPI } from '../../api/auth/auth';
 
 
 const initialState = {
-    user: null,
+  user: null,
   error: null,
   isLoading: false,
 }
@@ -16,18 +14,12 @@ const login = createAsyncThunk('authSlice/login', async ({ email, password }, th
     const { data } = await loginAPI(email, password);
     return data
   } catch (error) {
+    if (error.response.data.message)
+      return rejectWithValue(error.response.data.message);
     return rejectWithValue(error.message);
   }
 })
 
-const loginWithGoogle = createAsyncThunk('authSlice/loginWithGoogle', async (_, thunkAPI) => {
-  const { rejectWithValue } = thunkAPI;
-  try {
-    const { user } = await signInWithPopup(auth, new GoogleAuthProvider());
-    const { data } = await loginUserWithGoogleAPI(user.accessToken);
-    return data;
-  } catch (err) { return rejectWithValue(err.message); }
-})
 
 const register = createAsyncThunk('authSlice/register', async ({ username, email, password }, thunkAPI) => {
   const { rejectWithValue } = thunkAPI;
@@ -35,26 +27,24 @@ const register = createAsyncThunk('authSlice/register', async ({ username, email
     const { data } = await registerAPI(username, email, password);
     return data;
   } catch (error) {
+    if (error.response.data.message)
+      return rejectWithValue(error.response.data.message);
     return rejectWithValue(error.message);
   }
 
 })
 
-const registerWithGoogle = createAsyncThunk('authSlice/registerWithGoogle', async (_, thunkAPI) => {
-  const { rejectWithValue } = thunkAPI;
-  try {
-    const { user } = await signInWithPopup(auth, new GoogleAuthProvider());
-    const { data } = await registerUserWithGoogleAPI(user.accessToken);
-    return data;
-  } catch (err) { return rejectWithValue(err.message); }
-})
 
 const logout = createAsyncThunk('authSlice/logout', async (_, thunkAPI) => {
   const { rejectWithValue } = thunkAPI;
   try {
     const { data } = await logoutAPI();
     return data;
-  } catch (err) { return rejectWithValue(err.message) }
+  } catch (err) {
+    if (error.response.data.message)
+      return rejectWithValue(error.response.data.message);
+    return rejectWithValue(error.message);
+  }
 })
 
 const isAuth = createAsyncThunk('authSlice/isAuth', async (_, thunkAPI) => {
@@ -62,7 +52,11 @@ const isAuth = createAsyncThunk('authSlice/isAuth', async (_, thunkAPI) => {
   try {
     const { data } = await isAuthAPI();
     return data;
-  } catch (err) { return rejectWithValue(err.message) }
+  } catch (err) {
+    if (error.response.data.message)
+      return rejectWithValue(error.response.data.message);
+    return rejectWithValue(error.message);
+  }
 })
 
 const authSlice = createSlice({
@@ -93,46 +87,18 @@ const authSlice = createSlice({
         state.user = null;
       })
 
-      //Login with google 
-      .addCase(loginWithGoogle.pending, (state) => {
-        state.isLoading = true;
-        state.user = null;
-      })
-      .addCase(loginWithGoogle.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
-        state.user = payload;
-      })
-      .addCase(loginWithGoogle.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = payload;
-        state.user = null;
-      })
-
       //regiser
       .addCase(register.pending, (state) => {
         state.isLoading = true;
         state.user = null;
+        state.error = null;
       })
       .addCase(register.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.user = payload;
+        state.error = null;
       })
       .addCase(register.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = payload;
-        state.user = null;
-      })
-
-      //registerWithGoogle with google 
-      .addCase(registerWithGoogle.pending, (state) => {
-        state.isLoading = true;
-        state.user = null;
-      })
-      .addCase(registerWithGoogle.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
-        state.user = payload;
-      })
-      .addCase(registerWithGoogle.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
         state.user = null;
@@ -159,10 +125,12 @@ const authSlice = createSlice({
       .addCase(isAuth.pending, (state) => {
         state.isLoading = true;
         state.user = null;
+        state.error = null;
       })
       .addCase(isAuth.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.user = payload;
+        state.error = null;
       })
       .addCase(isAuth.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -174,4 +142,4 @@ const authSlice = createSlice({
 
 export default authSlice.reducer;
 export const { reset } = authSlice.actions;
-export { login, register, loginWithGoogle, registerWithGoogle, logout, isAuth };
+export { login, register, logout, isAuth };
