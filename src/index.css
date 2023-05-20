@@ -594,3 +594,9 @@ html {
     .KPI-wrapper{
       display: flex;
     }
+
+
+    /* inputs in createpost */
+    #keywords,#timeToShare{
+      background-color: gray;
+    }

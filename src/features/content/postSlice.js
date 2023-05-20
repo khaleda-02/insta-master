@@ -14,6 +14,7 @@ const createPost = createAsyncThunk('postSlice/createPost', async ({ title, time
   const { rejectWithValue } = thunkAPI;
   try {
     const { data } = await createPostAPI(title, timeToShare);
+    console.log(data);
     return data.data;
   } catch (err) {
     return rejectWithValue(err.message)
@@ -26,7 +27,7 @@ const updatePost = createAsyncThunk('postSlice/updatePost', async ({ _ }, thunkA
   const { rejectWithValues } = thunkAPI;
   try {
     console.log('in updatePost thunkAPI');
-    // const { data } = await updatePostAPI();
+    // const { data } = await updatePo+stAPI();
     setTimeout(() => {
       logger.info('testing ');
     }, 5000);
@@ -52,7 +53,7 @@ const postSlice = createSlice({
       })
       .addCase(createPost.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        console.log(payload);
+        console.log("payload",payload);
         // state.posts.push(payload);
       })
       .addCase(createPost.rejected, (state, { payload }) => {

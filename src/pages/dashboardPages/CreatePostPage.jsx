@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-unused-vars */
 import React, { useRef, useState } from 'react'
 import PostElement from '../../components/dashboardComp/creatpostComp/PostElement'
@@ -34,12 +35,16 @@ const createPostPage = () => {
       return;
     }
 
-    dispatch(createPost({ title: titleRef.current.value, timeToShare: dateRef.current.value })).unwrap().then(data => {
+    dispatch(createPost({ title: titleRef.current.value, timeToShare: dateRef.current.value }))
+    .unwrap()
+    .then(data => {
+      console.log(data);
       const post = {
         img: data.image || postImg,
         hashtags: data.hashtags || [],
         caption: data.caption || 'there is no caption for this title , please try aonther title ...',
       }
+      // TODO: get the caption from request!
       toast.success('post created sucessfully ... ', {
         position: "bottom-right",
         autoClose: 5000,
