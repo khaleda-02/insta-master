@@ -548,53 +548,6 @@ html {
 }
 
 /* KPI */
-<<<<<<< HEAD
-.KPIS {
-  display: flex;
-}
-.KPI-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100px;
-  height: 100px;
-  border: 2px solid #ccc;
-  border-radius: 5px;
-  padding: 20px;
-  margin: 10px;
-}
-
-.KPI-label {
-  font-size: 10px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.KPI-value {
-  font-size: 10px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.KPI-trend {
-  font-size: 10px;
-  color: #fff;
-  border-radius: 5px;
-  padding: 5px;
-}
-
-.KPI-trend.positive {
-  background-color: green;
-}
-
-.KPI-trend.negative {
-  background-color: red;
-}
-.KPI-wrapper {
-  display: flex;
-}
-=======
 .KPIS{
     display: flex;
     }
@@ -646,4 +599,3 @@ html {
     #keywords,#timeToShare{
       background-color: gray;
     }
->>>>>>> a7dc600d3f977f96a93ab9e767544cef770f1cfe

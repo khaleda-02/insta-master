@@ -7,7 +7,8 @@ const getPostsAPI = async () => {
   return await api.get('/api/content/get-posts');
 }
 const getPostsByDayAPI = async (date) => {
-  return await api.get('/api/content/get-posts-by-day', { date });
+  console.log(date);
+  return await api.get('/api/content/get-posts-by-day', {  date: '2023/5/23'});
 }
 const getPostsByMonthAPI = async (date) => {
   return await api.get('/api/content/get-posts-by-month', { date });

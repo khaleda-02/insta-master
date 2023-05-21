@@ -27,6 +27,7 @@ function CalendarTable({ date }) {
 
   const [selectedDay, setSelectedDay] = useState(null);
   const selectedDayHandler = (date) => {
+   
     setSelectedDay(date);
   }
 

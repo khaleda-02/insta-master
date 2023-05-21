@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-=======
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-unused-vars */
->>>>>>> a7dc600d3f977f96a93ab9e767544cef770f1cfe
 import React, { useRef, useState } from 'react'
 import PostElement from '../../components/dashboardComp/creatpostComp/PostElement'
 import Dashboard from '../../hoc/Dashboard'

@@ -1,17 +1,16 @@
-import React, { useEffect } from "react";
-
+import React, { useEffect,useState } from "react";
+import { useDispatch, useSelector } from 'react-redux'
+import { getPostsByDay } from "../../../features/content/postSlice";
 const Popup = ({ data }) => {
+  const dispatch = useDispatch();
+  const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
+    // Call API to get the day's posts
+    // const fetchPosts = async () => {
+    dispatch(getPostsByDay('2023/5/23'));
+  },[]);
 
-    //! scenarios 
-    // call api to get the day posts 
-    // make a loading while is's pending . 
-    // and then set the state (posts) , then map throght the state and render state's posts with the id as the key
-    // when the user clicks on delete button , call the delete endpoint. 
-
-    // when the user clicks on edit button , call the getPostById endpoint then the modle popup   
-    console.log(data)
-  }, [])
   return (
     <div >
       <input type="checkbox" id="my-modal-3" className="modal-toggle" />
