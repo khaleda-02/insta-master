@@ -20,7 +20,7 @@ const LoginPage = () => {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
 
-    disppatch(login({ email, password })).unwrap().then(() => { navigate('/', { replace: true }) });
+    dispatch(login({ email, password })).unwrap().then(() => { navigate('/', { replace: true }) });
 
     emailRef.current.value = null;
     passwordRef.current.value = null;

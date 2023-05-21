@@ -18,19 +18,19 @@ const thunkHandler = (apiCallingFun, args) => async (_, thunkAPI) => {
     return rejectWithValue(error.message);
   }
 }
-const createPost = createAsyncThunk('postSlice/createPost', thunkHandler(createPostAPI, { title, timeToShare }))
+// const createPost = createAsyncThunk('postSlice/createPost', thunkHandler(createPostAPI, { title, timeToShare }))
 //! thunk for create post
-// const createPost = createAsyncThunk('postSlice/createPost', async ({ title, timeToShare }, thunkAPI) => {
-//   const { rejectWithValue } = thunkAPI;
-//   try {
-//     const { data } = await createPostAPI(title, timeToShare);
-//     return data.data;
-//   } catch (err) {
-//     if (error.response.data.message)
-//       return rejectWithValue(error.response.data.message);
-//     return rejectWithValue(error.message);
-//   }
-// })
+const createPost = createAsyncThunk('postSlice/createPost', async ({ title, timeToShare }, thunkAPI) => {
+  const { rejectWithValue } = thunkAPI;
+  try {
+    const { data } = await createPostAPI(title, timeToShare);
+    return data.data;
+  } catch (err) {
+    if (error.response.data.message)
+      return rejectWithValue(error.response.data.message);
+    return rejectWithValue(error.message);
+  }
+})
 
 //! update post thunk
 const updatePost = createAsyncThunk('postSlice/updatePost', async ({ caption, postId }, thunkAPI) => {
@@ -100,7 +100,7 @@ const postSlice = createSlice({
       .addCase(updatePost.pending, (state) => {
         state.isLoading = true;
         state.error = null;
-      })      .addCase(updatePost.fulfilled, (state, { payload }) => {
+      }).addCase(updatePost.fulfilled, (state, { payload }) => {
         //payload is a post object (db naming) .
         state.isLoading = false;
         state.error = null;
