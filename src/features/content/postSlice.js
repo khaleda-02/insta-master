@@ -115,7 +115,7 @@ const postSlice = createSlice({
       .addCase(updatePost.pending, (state) => {
         state.isLoading = true;
         state.error = null;
-      })      .addCase(updatePost.fulfilled, (state, { payload }) => {
+      }).addCase(updatePost.fulfilled, (state, { payload }) => {
         //payload is a post object (db naming) .
         state.isLoading = false;
         state.error = null;
