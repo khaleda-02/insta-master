@@ -7,7 +7,6 @@ const Dashboard = ({ chlidren }) => {
     <div className='relative text-white flex justify-between w-full'>
       <Sidebar />
       {chlidren}
-
       {
         isLoading
         && <div className="w-full h-full absolute top-0 left-0 flex items-center justify-center">

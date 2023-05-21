@@ -33,13 +33,52 @@ const createPostPage = () => {
       return;
     }
 
-    dispatch(createPost({ title: titleRef.current.value, timeToShare: dateRef.current.value })).unwrap().then(data => {
-      const post = {
-        img: data.image || postImg,
-        hashtags: data.hashtags || [],
-        caption: data.caption || 'there is no caption for this title , please try aonther title ...',
-      }
-      toast.success('post created sucessfully ... ', {
+    dispatch(createPost({ title: titleRef.current.value, timeToShare: dateRef.current.value }))
+      .unwrap()
+      .then(data => {
+        console.log(data);
+        const post = {
+          _id: data._id,
+          imgUrl: data.image || postImg,
+          hashTags: data.hashtags || [],
+          caption: data.caption || 'there is no caption for this title , please try aonther title ...',
+          ...data
+        }
+        // TODO: get the caption from request!
+        toast.success('post created sucessfully ... ', {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        setCreatedPost(post);
+      }).catch(err => {
+        toast.error(err, {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      })
+
+    dateRef.current.value = null;
+    titleRef.current.value = null;
+  }
+
+
+
+  // calling the endpoint for updating the post in the db + slice state .
+  const saveChangesHandler = () => {
+    dispatch(updatePost({ caption: createdPost.caption, postId: createdPost._id })).unwrap().then((post) => {
+      toast.success('post created updated ... ', {
         position: "bottom-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -62,17 +101,6 @@ const createPostPage = () => {
         theme: "dark",
       });
     })
-
-  }
-
-
-
-  // calling the endpoint for updating the post in the db + slice state .
-  const saveChangesHandler = () => {
-    dispatch(updatePost())
-    // showning the loading popup 
-    // show the state , then make a tostofy 
-    // clear the table by clear the createPost state . 
   }
 
   // for update the post state in the childern components . 

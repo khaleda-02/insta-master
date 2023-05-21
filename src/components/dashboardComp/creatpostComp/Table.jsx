@@ -50,7 +50,7 @@ const Table = ({ post, changesHandler }) => {
               Post Image
             </th>
             <td className="px-6 py-4">
-              <button onClick={() => handleDownload(post.img)} className='text-xs font-bold px-2 py-1 bg-purple rounded-sm'>
+              <button onClick={() => handleDownload(post.imgUrl)} className='text-xs font-bold px-2 py-1 bg-purple rounded-sm'>
                 Download Image
               </button>
             </td>
@@ -71,7 +71,7 @@ const Table = ({ post, changesHandler }) => {
             </th>
             <td className="px-6 py-4">
               <div className='max-w-full flex items-center justify-start flex-wrap gap-3' >
-                {post?.hashtags.slice(0, 6)
+                {post?.hashTags.slice(0, 6)
                   .map(el => {
                     return <p className="btn-secondary text-sm px-2 py-1 min-h-[1rem]">{el}</p>
                   })}
