@@ -8,18 +8,15 @@ const getPostsAPI = async () => {
 }
 const getPostsByDayAPI = async (date) => {
   console.log(date);
-  return await api.get('/api/content/get-posts-by-day', {  date: '2023/5/23'});
+  return await api.post('/api/content/get-posts-by-day', { date: '2024/4/4' });
 }
 const getPostsByMonthAPI = async (date) => {
   return await api.get('/api/content/get-posts-by-month', { date });
 }
 const deletePostAPI = async (postId) => {
-  console.log(postId);
   return await api.delete(`/api/content/delete-post/${postId}`);
 }
 const updatePostAPI = async (caption, postId) => {
-  console.log(caption, postId, 'update post');
-  // it suppose to pass the whole post obj , {postId , title , newCaption || old , hashtags  , newImg || old }
   return await api.put(`/api/content/update-post/${postId}`, { caption });
 }
 

@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { getPostsByDay } from "../../../features/content/postSlice";
 const Popup = ({ data }) => {
@@ -8,8 +8,10 @@ const Popup = ({ data }) => {
   useEffect(() => {
     // Call API to get the day's posts
     // const fetchPosts = async () => {
-    dispatch(getPostsByDay('2023/5/23'));
-  },[]);
+    dispatch(getPostsByDay('2024/4/4')).unwrap().then(data => {
+      console.log('in popup', data);
+    }).catch(err => console.log('in popup', err));
+  }, []);
 
   return (
     <div >

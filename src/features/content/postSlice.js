@@ -3,33 +3,31 @@ import { createPostAPI, deletePostAPI, getPostsAPI, updatePostAPI, getPostsByDay
 
 
 const initialState = {
-  posts: [],
-  error: null,
-  isLoading: false,
+  posts: [], error: null, isLoading: false,
 }
 
-const thunkHandler = (apiCallingFun, args) => async (_, thunkAPI) => {
-  const { rejectWithValue } = thunkAPI;
-  try {
-    const { data } = await apiCallingFun(...args);
-    return data.data;
-  } catch (err) {
-    if (error.response.data.message)
-      return rejectWithValue(error.response.data.message);
-    return rejectWithValue(error.message);
-  }
-}
+// const thunkHandler = (apiCallingFun, args) => async (_, thunkAPI) => {
+//   const {rejectWithValue} = thunkAPI;
+//   try {
+//     const {data} = await apiCallingFun(...args);
+//     return data.data;
+//   } catch (err) {
+//     if (err.response.data.message) return rejectWithValue(err.response.data.message);
+//     return rejectWithValue(err.message);
+//   }
+// }
 // const createPost = createAsyncThunk('postSlice/createPost', thunkHandler(createPostAPI, { title, timeToShare }))
 //! thunk for create post
+
+
 const createPost = createAsyncThunk('postSlice/createPost', async ({ title, timeToShare }, thunkAPI) => {
   const { rejectWithValue } = thunkAPI;
   try {
     const { data } = await createPostAPI(title, timeToShare);
     return data.data;
   } catch (err) {
-    if (error.response.data.message)
-      return rejectWithValue(error.response.data.message);
-    return rejectWithValue(error.message);
+    if (err.response.data.message) return rejectWithValue(err.response.data.message);
+    return rejectWithValue(err.message);
   }
 })
 
@@ -40,9 +38,8 @@ const updatePost = createAsyncThunk('postSlice/updatePost', async ({ caption, po
     const { data } = await updatePostAPI(caption, postId);
     return data.data;
   } catch (err) {
-    if (error.response.data.message)
-      return rejectWithValue(error.response.data.message);
-    return rejectWithValue(error.message);
+    if (err.response.data.message) return rejectWithValue(err.response.data.message);
+    return rejectWithValue(err.message);
   }
 })
 
@@ -53,8 +50,7 @@ const getPosts = createAsyncThunk('postSlice/getPosts', async (_, thunkAPI) => {
     const { data } = await getPostsAPI();
     return data.data
   } catch (err) {
-    if (err.response.data.message)
-      return rejectWithValue(err.response.data.message);
+    if (err.response.data.message) return rejectWithValue(err.response.data.message);
     return rejectWithValue(err.message);
   }
 })
@@ -62,12 +58,13 @@ const getPosts = createAsyncThunk('postSlice/getPosts', async (_, thunkAPI) => {
 const getPostsByDay = createAsyncThunk('postSlice/getPostsByDay', async ({ date }, thunkAPI) => {
   const { rejectWithValue } = thunkAPI;
   try {
-    console.log('in getPostsByDay thunkAPI',date);
+    console.log('in getPostsByDay thunkAPI', date);
     const { data } = await getPostsByDayAPI('2023/5/23');
+    console.log(data);
     return data.data
   } catch (err) {
-    if (err.response.data.message)
-      return rejectWithValue(err.response.data.message);
+    console.log(err);
+    if (err.response.data.message) return rejectWithValue(err.response.data.message);
     return rejectWithValue(err.message);
   }
 })
@@ -77,24 +74,16 @@ const getPostsByDay = createAsyncThunk('postSlice/getPostsByDay', async ({ date 
 const deletePost = createAsyncThunk('postSlice/deletePost', async ({ postId }, thunkAPI) => {
   const { rejectWithValue } = thunkAPI;
   try {
-    console.log('in updatePost thunkAPI');
-    // const { data } = await updatePostAPI();
-    setTimeout(() => {
-      logger.info('testing ');
-    }, 5000);
+    const { data } = await deletePostAPI(postId);
     return data.data;
   } catch (err) {
-    if (error.response.data.message)
-      return rejectWithValue(error.response.data.message);
-    return rejectWithValue(error.message);
+    if (err.response.data.message) return rejectWithValue(err.response.data.message);
+    return rejectWithValue(err.message);
   }
 })
 
 const postSlice = createSlice({
-  name: 'postSlice',
-  initialState,
-  reducers: {},
-  extraReducers: (builder) => {
+  name: 'postSlice', initialState, reducers: {}, extraReducers: (builder) => {
     builder
       // create post cases
       .addCase(createPost.pending, (state) => {
@@ -103,8 +92,7 @@ const postSlice = createSlice({
       })
       .addCase(createPost.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        console.log(payload);
-        // state.posts.push(payload);
+        state.posts.push(payload);
       })
       .addCase(createPost.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -158,6 +146,21 @@ const postSlice = createSlice({
         state.posts = state.posts.filter(post => post._id != payload._id);
       })
       .addCase(deletePost.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+
+
+      // getPostsByDay post cases  
+      .addCase(getPostsByDay.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(getPostsByDay.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getPostsByDay.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       })
