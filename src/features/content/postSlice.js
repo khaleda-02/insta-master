@@ -161,25 +161,6 @@ const postSlice = createSlice({
         state.isLoading = false;
         state.error = payload;
       })
-
-      // get post by day cases
-      .addCase(getPostsByDay.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      }
-      )
-      .addCase(getPostsByDay.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = null;
-        state.posts = [...payload];
-      }
-      )
-      .addCase(getPostsByDay.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = payload;
-      }
-      )
-      
   }
 })
 
