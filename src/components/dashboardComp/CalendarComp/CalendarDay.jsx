@@ -2,6 +2,7 @@ import { format } from "date-fns";
 
 function CalendarDay({ day, days, handler }) {
   const handleClick = (d) => {
+    console.log(d);
     handler(d);
   };
 

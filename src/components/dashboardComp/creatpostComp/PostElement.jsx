@@ -11,7 +11,7 @@ function PostElement({ post }) {
   return (
     <div className="post-element-container bg-[#5B185B] rounded-md pb-8">
       {/* Post image */}
-      <img className="image_viewer rounded-md  " src={post?.img || postImg} alt="post" />
+      <img className="image_viewer rounded-md  " src={post?.imgUrl|| postImg} alt="post" />
 
       {/* Post statistics */}
       <div className="px-2 flex items-center justify-start gap-2 my-3">
@@ -31,8 +31,8 @@ function PostElement({ post }) {
 
       {/* Post hashtags  */}
       <div className="mt-3 text-xs px-2 ">
-        {post?.hashtags &&
-          post?.hashtags.slice(0, 6)
+        {post?.hashTags &&
+          post?.hashTags.slice(0, 6)
             .map(el => {
               return <p className="inline-block px-[2px]">{el}</p>
             })}

@@ -1,10 +1,8 @@
 import React, { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { login, loginWithGoogle } from '../../features/auth/authSlice'
+import { login } from '../../features/auth/authSlice'
 import { Input, Navbar } from '../../components/'
-import { FcGoogle } from 'react-icons/fc'
-import { BsFacebook } from 'react-icons/bs'
 
 
 const LoginPage = () => {
@@ -29,16 +27,10 @@ const LoginPage = () => {
   }
 
 
-  //calling the loginWithGoogle 
-  const loginWithGoogleHandler = (e) => {
-    e.preventDefault()
-    dispatch(loginWithGoogle())
-      .unwrap().then(() => { navigate('/', { replace: true }) });
-  }
 
   return (
-  <div>
-    <Navbar />
+    <div>
+      <Navbar />
       <div className='w-full h-[92vh]'>
         {/* form container */}
         <div className='w-full md:min-h-[92vh] flex items-center justify-center '>
@@ -73,12 +65,6 @@ const LoginPage = () => {
                 </div>
                 <p className='text-red-600 absolute bottom-[-20px] left-0 '>{error} </p>
               </form>
-              <div className="divider lg:divider-horizontal text-black after:bg-gray-white before:bg-gray-white">OR</div>
-              <div className='w-full md:w-[80]md:mx-auto lg:w-[40%] '>
-                <button onClick={loginWithGoogleHandler} disabled={isLoading} className="btn btn-outline w-full capitalize mx-2 my-4 flex items-center justify-center gap-2"><FcGoogle size={23} /> sign in with goooogle </button>
-                <button onClick={loginWithGoogleHandler} disabled={isLoading} className="btn btn-outline w-full capitalize mx-2 my-4 flex items-center justify-center gap-2 "><BsFacebook className='text-[#4267B2]' size={23} /> sign in with facebook </button>
-                <Link to="/auth/register" className="btn btn-outline w-full capitalize mx-2 my-4 flex items-center justify-center gap-2">if your aren't a user , register!</Link>
-              </div>
             </div>
           </div>
         </div>
