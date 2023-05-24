@@ -7,8 +7,12 @@ const getPostsAPI = async () => {
   return await api.get('/api/content/get-posts');
 }
 const getPostsByDayAPI = async (date) => {
-  console.log(date);
-  return await api.post('/api/content/get-posts-by-day', { date: '2024/4/4' });
+  // decode date from url params and pass it to api call 
+  // const datee = new Date(2023, 4, 23); // Create a Date object with the desired date
+  // const encodedDate = encodeURIComponent(datee.toISOString()); // Encode the date
+  return await api.get(
+    `http://localhost:5173/api/content/get-posts-by-day/${date}`
+  );
 }
 const getPostsByMonthAPI = async (date) => {
   return await api.get('/api/content/get-posts-by-month', { date });

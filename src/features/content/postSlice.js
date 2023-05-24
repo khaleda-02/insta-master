@@ -55,19 +55,22 @@ const getPosts = createAsyncThunk('postSlice/getPosts', async (_, thunkAPI) => {
   }
 })
 
-const getPostsByDay = createAsyncThunk('postSlice/getPostsByDay', async ({ date }, thunkAPI) => {
+const getPostsByDay = createAsyncThunk('postSlice/getPostsByDay', async (payload, thunkAPI) => {
+  const { date } = payload;
   const { rejectWithValue } = thunkAPI;
+
   try {
-    console.log('in getPostsByDay thunkAPI', date);
-    const { data } = await getPostsByDayAPI('2023/5/23');
+    const { data } = await getPostsByDayAPI(date);
     console.log(data);
-    return data.data
+    return data.data;
   } catch (err) {
     console.log(err);
-    if (err.response.data.message) return rejectWithValue(err.response.data.message);
+    if (err.response?.data?.message) {
+      return rejectWithValue(err.response.data.message);
+    }
     return rejectWithValue(err.message);
   }
-})
+});
 
 
 //! delete post thunk 
