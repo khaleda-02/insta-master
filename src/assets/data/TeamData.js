@@ -20,11 +20,11 @@ const teamData = [
     img: salem,
     name: "salem",
     position: "Peoject Manager",
-    bio: "Data sicence , full stack dev , Ml , AI , Fullter , android , any ting about tech  ",
+    bio: "Junior Data Engineer and intrested in data science and machine learning.",
     links: [
-      { value: 'https://github.com/hussendev', icon: "fa-brands fa-square-github" },
-      { value: 'https://www.linkedin.com/in/hussen-ghabayen-32a31721b/', icon: 'fa-brands fa-linkedin' },
-      { value: 'https://www.facebook.com/profile.php?id=100005093294892', icon: 'fa-brands fa-facebook' }
+      { value: 'https://github.com/salemAmassi', icon: "fa-brands fa-square-github" },
+      { value: 'https://www.linkedin.com/in/salem-amassi-b961aa229/', icon: 'fa-brands fa-linkedin' },
+      { value: 'https://www.facebook.com/amassi.salim/', icon: 'fa-brands fa-facebook' }
     ]
   },
   {

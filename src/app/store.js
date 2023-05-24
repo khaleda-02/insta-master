@@ -3,13 +3,14 @@ import authSlice from "../features/auth/authSlice";
 import tempPostSlice from "../features/content/tempPostSlice";
 import postsSlice from "../features/content/postsSlice";
 import postSlice from "../features/content/postSlice";
+import insightSlice from "../features/content/insightSlice";
 
 const store = configureStore({
   reducer: {
     auth: authSlice,
     tempPost: tempPostSlice,
-    posts: postsSlice,
-    post: postSlice
-  }
+    post: postSlice,
+    insights: insightSlice,
+  },
 });
-export default store; 
+export default store;
