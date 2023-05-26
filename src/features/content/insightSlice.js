@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getInsightsAPI } from "../../api/content/insights";
 
 const initialState = {
-  insights: [],
+  insights: {},
   error: null,
   isLoading: false,
 };
@@ -10,16 +10,13 @@ const initialState = {
 const getInsights = createAsyncThunk(
   "insightSlice/getInsights",
   async (_, thunkAPI) => {
-    console.log("in thunk   ");
     try {
       const { data } = await getInsightsAPI();
-      console.log("data in slice ", data.data);
-      const followers  = JSON.parse(data.data.followers);
+      const followers = JSON.parse(data.data.followers);
       const following = JSON.parse(data.data.following);
       const posts = JSON.parse(data.data.posts);
-      return{followers, following, posts};
+      return { followers, following, posts };
     } catch (err) {
-      console.log(err);
       return thunkAPI.rejectWithValue(err.message);
     }
   }
@@ -36,13 +33,11 @@ const insightSlice = createSlice({
         state.error = null;
       })
       .addCase(getInsights.fulfilled, (state, { payload }) => {
-        console.log("payload in fulfilled  ", payload);
         state.isLoading = false;
         state.insights = { ...payload };
         state.error = null;
       })
       .addCase(getInsights.rejected, (state, { payload }) => {
-        console.log("payload in reject  ", payload);
         state.isLoading = false;
         state.error = payload;
       });

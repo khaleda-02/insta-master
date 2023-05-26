@@ -21,18 +21,11 @@ const Insights = () => {
       {/* <h1 className='text-white'>Insights</h1> */}
       <Dashboard
         chlidren={
-          <div>
-            <div className="grid grid-cols-3 gap-10">
+          <div className="w-full h-[100vh] flex items-center justify-center">
+            <div className="grid grid-cols-2 gap-10">
               <FollowersDonut />
-            <Bar />
-
               <PostsPie />
-              <div>
-                <h1>Figures</h1>
-                <div className="KPI-wrapper">
-                  <KPI/>
-                </div>
-              </div> 
+              <KPI/>
             </div>
           </div>
         }

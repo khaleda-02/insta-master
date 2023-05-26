@@ -1,5 +1,12 @@
 import React, { useEffect } from "react";
-import { Chart, ChartTitle, ChartLegend, ChartSeries, ChartSeriesItem, ChartSeriesLabels } from "@progress/kendo-react-charts";
+import {
+  Chart,
+  ChartTitle,
+  ChartLegend,
+  ChartSeries,
+  ChartSeriesItem,
+  ChartSeriesLabels,
+} from "@progress/kendo-react-charts";
 import { useSelector } from "react-redux";
 import { COLORS } from "../../../insightsConsts";
 const postsData = [
@@ -10,7 +17,6 @@ const postsData = [
     },
     color: COLORS.image,
     data: 10,
-
   },
   {
     category: "Video",
@@ -19,15 +25,13 @@ const postsData = [
     },
     color: COLORS.video,
     data: 10,
-
   },
 ];
 const getFigures = (postsData, posts) => {
-  const output = []
+  const output = [];
   for (var item of postsData) {
     var data = item.getValue(posts);
     item.data = data;
-    console.log(item.color);
     output.push(item.data);
   }
   return output;
@@ -42,30 +46,28 @@ const labelContent = (props) => {
 };
 const Charts = () => {
   const insights = useSelector((state) => state.insights);
-  const  {posts}  = insights.insights;
-  const figures =  getFigures(postsData, posts);
-  
-  useEffect(() => {
-  }, [insights]);
+  const { posts } = insights.insights;
+  const figures = getFigures(postsData, posts);
+
+  useEffect(() => {}, [insights]);
 
   return (
     <Chart>
       <ChartTitle text="Posts (image, video)" />
       <ChartLegend position="top" orientation="horizontal" />
       <ChartSeries>
-        <ChartSeriesItem type="pie"
-              overlay={{
-                gradient: "sharpBevel",
-              }}
-              tooltip={{
-                visible: true,
-              }}
-             
-         data={figures} 
-         field="data"
-        categoryField="name"
-      
-         />
+        <ChartSeriesItem
+          type="pie"
+          overlay={{
+            gradient: "sharpBevel",
+          }}
+          tooltip={{
+            visible: true,
+          }}
+          data={figures}
+          field="data"
+          categoryField="name"
+        />
       </ChartSeries>
     </Chart>
   );
