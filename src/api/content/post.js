@@ -7,18 +7,20 @@ const getPostsAPI = async () => {
   return await api.get('/api/content/get-posts');
 }
 const getPostsByDayAPI = async (date) => {
-  return await api.get('/api/content/get-posts-by-day', { date });
+  // decode date from url params and pass it to api call 
+  // const datee = new Date(2023, 4, 23); // Create a Date object with the desired date
+  // const encodedDate = encodeURIComponent(datee.toISOString()); // Encode the date
+  return await api.get(
+    `http://localhost:5173/api/content/get-posts-by-day/${date}`
+  );
 }
 const getPostsByMonthAPI = async (date) => {
   return await api.get('/api/content/get-posts-by-month', { date });
 }
 const deletePostAPI = async (postId) => {
-  console.log(postId);
   return await api.delete(`/api/content/delete-post/${postId}`);
 }
 const updatePostAPI = async (caption, postId) => {
-  console.log(caption, postId, 'update post');
-  // it suppose to pass the whole post obj , {postId , title , newCaption || old , hashtags  , newImg || old }
   return await api.put(`/api/content/update-post/${postId}`, { caption });
 }
 
