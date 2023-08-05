@@ -1,4 +1,4 @@
-import { Footer, Features, Services, Team, Hero, Navbar } from "../components"
+import { Footer, Features, Services, Team, Hero, Navbar } from "../components";
 
 const Landing = () => {
   return (
@@ -10,7 +10,7 @@ const Landing = () => {
       <Team />
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default Landing
+export default Landing;

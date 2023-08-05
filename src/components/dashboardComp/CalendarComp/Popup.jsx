@@ -10,7 +10,7 @@ const Popup = ({ data }) => {
   // Convert month label into number like: May => 5
   function convertMonthToNumber(month) {
     const dateObj = new Date(`${month} 1, 2000`);
-    const monthNumber = date  Obj.getMonth() + 1;
+    const monthNumber = dateObj.getMonth() + 1;
     return monthNumber;
   }
 

@@ -3,7 +3,7 @@ import Dashboard from "../../hoc/Dashboard";
 import Pageination from "../../components/dashboardComp/PaginationComp";
 import { EditorComp } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
-import { getPosts } from '../../features/content/postSlice'
+import { getPosts } from "../../features/content/postSlice";
 import { setPost } from "../../features/content/tempPostSlice";
 
 function Card({ id, post }) {
@@ -11,21 +11,30 @@ function Card({ id, post }) {
 
   const clickHandler = () => {
     dispatch(setPost(post));
-  }
+  };
 
   return (
-    <div onClick={() => clickHandler()} className="card relative  py-2  w-[90%] mx-auto md:w-[48%] xl:w-[24%] " >
+    <div
+      onClick={() => clickHandler()}
+      className="card relative  py-2  w-[90%] mx-auto md:w-[48%] xl:w-[24%] "
+    >
       <label htmlFor="my-modal" className="card-image-container cursor-pointer">
-        <img className="card-image w-full h-full object-cover" src={post.imgUrl} alt={post.title} />
-        <h2 className="card-title absolute bottom-3 left-[50%] translate-x-[-50%]">{post.title}</h2>
+        <img
+          className="card-image w-full h-full object-cover"
+          src={post.imgUrl}
+          alt={post.title}
+        />
+        <h2 className="card-title absolute bottom-3 left-[50%] translate-x-[-50%]">
+          {post.title}
+        </h2>
       </label>
-    </ div>
+    </div>
   );
 }
 
 const ManagmentPage = () => {
   const dispatch = useDispatch();
-  const { posts } = useSelector(state => state.post);
+  const { posts } = useSelector((state) => state.post);
   const [currentpage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(8);
   const indexOfLastPost = currentpage * postsPerPage;
@@ -33,7 +42,7 @@ const ManagmentPage = () => {
   const currentPosts = posts.slice(firstPost, indexOfLastPost);
   useEffect(() => {
     dispatch(getPosts());
-  }, [])
+  }, []);
 
   //TODO: make a useEffect so , you can get posts from db
   const content = (
@@ -59,12 +68,9 @@ const ManagmentPage = () => {
           <EditorComp />
         </div>
       </div>
-
     </div>
   );
 
-  return (
-    <Dashboard chlidren={content} />
-  );
+  return <Dashboard chlidren={content} />;
 };
 export default ManagmentPage;
