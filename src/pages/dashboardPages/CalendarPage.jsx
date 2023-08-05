@@ -1,13 +1,11 @@
-import React from 'react'
-import Calendar from '../../components/dashboardComp/CalendarComp/Calendar';
-import Dashboard from '../../hoc/Dashboard';
+import React from "react";
+import Calendar from "../../components/dashboardComp/CalendarComp/Calendar";
+import Dashboard from "../../hoc/Dashboard";
 
 const CalendarPage = () => {
-  const content = (<Calendar />);
+  const content = <Calendar />;
 
-  return (
-    <Dashboard chlidren={content} />
-  )
-}
+  return <Dashboard chlidren={content} />;
+};
 
-export default CalendarPage
+export default CalendarPage;

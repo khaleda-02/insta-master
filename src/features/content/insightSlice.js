@@ -19,7 +19,7 @@ const getInsights = createAsyncThunk(
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);
     }
-  }
+  },
 );
 
 const insightSlice = createSlice({

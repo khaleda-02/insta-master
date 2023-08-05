@@ -30,8 +30,8 @@ export default function Sidebar() {
       </div>
 
       <ul className='flex items-center justify-between gap-3'>
-        <li className=' text-purple text-lg sono '><Link to="/dashboard/createpost">Dashboard</Link> </li>
-        <li className='  text-purple text-lg sono '><button onClick={logOutHandler}>log out</button></li>
+        <li className=' text-purple text-lg sono '><Link to="/dashboard/create">Dashboard</Link> </li>
+        <li className='  text-purple text-lg sono '><button onClick={logOutHandler}>logout</button></li>
       </ul>
 
     </div>

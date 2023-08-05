@@ -25,7 +25,7 @@ const Insights = () => {
             <div className="grid grid-cols-2 gap-10">
               <FollowersDonut />
               <PostsPie />
-              <KPI/>
+              <KPI />
             </div>
           </div>
         }
