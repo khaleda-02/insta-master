@@ -3,7 +3,6 @@ import { Routes, Route } from "react-router-dom";
 import {
   CalendarPage,
   CreatePostPage,
-  InsightsPage,
   LandingPage,
   LoginPage,
   ManagementPage,
@@ -16,10 +15,11 @@ import { useDispatch } from "react-redux";
 import ProtectedRoute from "./utils/ProtectedRoute";
 // import { ToastContainer, toast } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
+import Cookies from "js-cookie";
 
 function App() {
   const dispatch = useDispatch();
-
+  console.log("token", Cookies.get("token"));
   useEffect(() => {
     dispatch(isAuth());
   }, [dispatch]);
