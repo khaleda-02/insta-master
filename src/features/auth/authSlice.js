@@ -78,6 +78,7 @@ const handleAuthAction = (builder, action) => {
       state.message = payload.message;
       state.user = payload.data;
       Cookies.set("token", payload.data.token, { expires: 7, path: "/" });
+      console.log("Token is set:", Cookies.get("token"));
     })
     .addCase(action.rejected, (state, { payload }) => {
       state.user = null;
@@ -133,12 +134,12 @@ const authSlice = createSlice({
       })
       .addCase(isAuth.rejected, (state, { payload }) => {
         state.isLoading = false;
-        Cookies.remove("token", { path: "/" });
+        // Cookies.remove("token", { path: "/" });
         state.user = null;
       });
   },
 });
 
 export default authSlice.reducer;
-export const { reset, resetError } = authSlice.actions;
+export const { resetError } = authSlice.actions;
 export { login, register, logout, isAuth };

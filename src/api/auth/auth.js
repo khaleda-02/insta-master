@@ -1,17 +1,22 @@
-import api from '../client'
+import Cookies from "js-cookie";
+import api from "../client";
 
 const loginAPI = async (email, password) => {
-  console.log(email, password);
-  return await api.post('/api/auth/login', { email, password });
-}
+  return await api.post("/api/auth/login", { email, password });
+};
 const registerAPI = async (username, email, password) => {
-  return await api.post('/api/auth/register', { username, email, password });
-}
+  return await api.post("/api/auth/register", { username, email, password });
+};
 const logoutAPI = async () => {
-  return await api.get('/api/auth/logout');
-}
+  return await api.get("/api/auth/logout");
+};
 const isAuthAPI = async () => {
-  return await api.get('/api/auth/isauth');
-}
+  console.log(Cookies.get("token"));
+  return await api.get("/api/auth/isauth", {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  });
+};
 
-export { loginAPI, registerAPI, logoutAPI, isAuthAPI }
+export { loginAPI, registerAPI, logoutAPI, isAuthAPI };
