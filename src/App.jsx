@@ -57,14 +57,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route
-          path="/dashboard/insights"
-          element={
-            <ProtectedRoute>
-              <InsightsPage />
-            </ProtectedRoute>
-          }
-        />
         //* not found
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
