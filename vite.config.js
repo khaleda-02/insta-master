@@ -6,7 +6,11 @@ export default defineConfig({
   build: {
     rollupOptions: {
       // Add the external modules here
-      external: ["@progress/kendo-react-layout", "@progress/kendo-svg-icons"],
+      external: [
+        "@progress/kendo-react-layout",
+        "@progress/kendo-react-intl",
+        "@progress/kendo-svg-icons",
+      ],
     },
   },
 });
