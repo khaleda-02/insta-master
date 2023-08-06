@@ -2,7 +2,6 @@ import Cookies from "js-cookie";
 import api from "../client";
 
 const createPostAPI = async (title, timeToShare) => {
-  console.log(Cookies.get("token"), 'token');
   return await api.post("/api/content/create-post", { title, timeToShare }, {
     headers: {
       Authorization: `Bearer ${Cookies.get("token")}`,

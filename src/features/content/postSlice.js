@@ -9,7 +9,6 @@ const initialState = {
 const createPost = createAsyncThunk('postSlice/createPost', async ({ title, timeToShare }, thunkAPI) => {
   const { rejectWithValue } = thunkAPI;
   try {
-    console.log('in post slice create fun');
     const { data } = await createPostAPI(title, timeToShare);
     return data.data;
   } catch (err) {
@@ -48,10 +47,8 @@ const getPostsByDay = createAsyncThunk('postSlice/getPostsByDay', async (payload
 
   try {
     const { data } = await getPostsByDayAPI(date);
-    console.log(data);
     return data.data;
   } catch (err) {
-    console.log(err);
     if (err.response?.data?.message) {
       return rejectWithValue(err.response.data.message);
     }
