@@ -16,13 +16,11 @@ const getPostsAPI = async () => {
   });
 };
 const getPostsByDayAPI = async (date) => {
-  return await api.get(
-    `/api/content/get-posts-by-day/${date}`,
-  ), {
+  return await api.get(`/api/content/get-posts-by-day/${date}`, {
     headers: {
       Authorization: `Bearer ${Cookies.get("token")}`,
     },
-  };
+  })
 };
 const getPostsByMonthAPI = async (date) => {
   return await api.get("/api/content/get-posts-by-month", { date }, {
