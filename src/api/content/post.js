@@ -17,7 +17,7 @@ const getPostsAPI = async () => {
 };
 const getPostsByDayAPI = async (date) => {
   return await api.get(
-    `http://localhost:5173/api/content/get-posts-by-day/${date}`,
+    `/api/content/get-posts-by-day/${date}`,
   ), {
     headers: {
       Authorization: `Bearer ${Cookies.get("token")}`,
