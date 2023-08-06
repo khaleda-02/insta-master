@@ -134,7 +134,7 @@ const authSlice = createSlice({
       })
       .addCase(isAuth.rejected, (state, { payload }) => {
         state.isLoading = false;
-        // Cookies.remove("token", { path: "/" });
+        Cookies.remove("token", { path: "/" });
         state.user = null;
       });
   },

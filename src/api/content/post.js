@@ -1,27 +1,51 @@
+import Cookies from "js-cookie";
 import api from "../client";
 
 const createPostAPI = async (title, timeToShare) => {
-  return await api.post("/api/content/create-post", { title, timeToShare });
+  console.log(Cookies.get("token"), 'token');
+  return await api.post("/api/content/create-post", { title, timeToShare }, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  });
 };
 const getPostsAPI = async () => {
-  return await api.get("/api/content/get-posts");
+  return await api.get("/api/content/get-posts", {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  });
 };
 const getPostsByDayAPI = async (date) => {
-  // decode date from url params and pass it to api call
-  // const datee = new Date(2023, 4, 23); // Create a Date object with the desired date
-  // const encodedDate = encodeURIComponent(datee.toISOString()); // Encode the date
   return await api.get(
     `http://localhost:5173/api/content/get-posts-by-day/${date}`,
-  );
+  ), {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  };
 };
 const getPostsByMonthAPI = async (date) => {
-  return await api.get("/api/content/get-posts-by-month", { date });
+  return await api.get("/api/content/get-posts-by-month", { date }, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  });
 };
 const deletePostAPI = async (postId) => {
-  return await api.delete(`/api/content/delete-post/${postId}`);
+  return await api.delete(`/api/content/delete-post/${postId}`, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    }
+    ,
+  });
 };
 const updatePostAPI = async (caption, postId) => {
-  return await api.put(`/api/content/update-post/${postId}`, { caption });
+  return await api.put(`/api/content/update-post/${postId}`, { caption }, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  });
 };
 
 export {
