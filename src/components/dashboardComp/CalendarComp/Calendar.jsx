@@ -8,13 +8,11 @@ function Calendar() {
   const handlePrevMonth = () => {
     const newDate = new Date(date.getFullYear(), date.getMonth() - 1, 1);
     setDate(newDate);
-    // Fetch posts for this month
   };
 
   const handleNextMonth = () => {
     const newDate = new Date(date.getFullYear(), date.getMonth() + 1, 1);
     setDate(newDate);
-    // Fetch posts for this month
   };
 
   return (

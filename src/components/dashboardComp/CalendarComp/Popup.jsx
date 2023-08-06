@@ -28,7 +28,7 @@ const Popup = ({ data }) => {
         setPosts(response.payload);
         setIsLoading(false);
       } catch (err) {
-        console.log('Error fetching posts:', err);
+        // console.log('Error fetching posts:', err);
       }
     };
 
@@ -47,7 +47,7 @@ const Popup = ({ data }) => {
           <label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
           <h1 className="font-bold w-full border-b-2 border-[#D644D6] border-solid pb-2 text-2xl text-center">{data}</h1>
           <div className="posts-list">
-            {posts.map((post, index) => (
+            {posts?.map((post, index) => (
               <div className="post-group my-3 px-2 flex items-center justify-between" key={index}>
                 <h2>{post.title}</h2>
                 <div className="flex items-center justify-between gap-3">
