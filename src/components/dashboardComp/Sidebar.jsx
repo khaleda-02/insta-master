@@ -50,22 +50,5 @@ export default function Sidebar() {
       </ul>
     </div>
 
-    //*h-full
-    //* h-full
-    // <div className={`${isOpen ? "w-0 hidden" : " block h - full "}`}>
-    //   <button onClick={() => setIsOpen(true)}>
-    //     <BiSidebar size={40} className="text-[#D644D6] hover:scale-110 duration-300" />
-    //   </button>
-    // </div>
-
-    //   <div className={` relative ${isOpen ? 'left-0 ' : 'left-[-100%]'} px-3 pb-4 overflow-y-auto bg-white`}>
-    // <ul className="space-y-2">
-    //   <button onClick={() => setIsOpen(false)} className="bg-[#D644D6]  cursor-pointer ext-2xl font-bold capitalize text-white sono p-3  w-[200px] hover:text-white rounded-sm ">close</button>
-    //   <SidebarItems itemName="create post" />
-    //   <SidebarItems itemName="calendar" />
-    //   <SidebarItems itemName="management" />
-    //   <SidebarItems itemName="insights" />
-    // </ul>
-    // </div>
   );
 }

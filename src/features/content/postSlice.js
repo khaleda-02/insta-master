@@ -6,23 +6,10 @@ const initialState = {
   posts: [], error: null, isLoading: false,
 }
 
-// const thunkHandler = (apiCallingFun, args) => async (_, thunkAPI) => {
-//   const {rejectWithValue} = thunkAPI;
-//   try {
-//     const {data} = await apiCallingFun(...args);
-//     return data.data;
-//   } catch (err) {
-//     if (err.response.data.message) return rejectWithValue(err.response.data.message);
-//     return rejectWithValue(err.message);
-//   }
-// }
-// const createPost = createAsyncThunk('postSlice/createPost', thunkHandler(createPostAPI, { title, timeToShare }))
-//! thunk for create post
-
-
 const createPost = createAsyncThunk('postSlice/createPost', async ({ title, timeToShare }, thunkAPI) => {
   const { rejectWithValue } = thunkAPI;
   try {
+    console.log('in post slice create fun');
     const { data } = await createPostAPI(title, timeToShare);
     return data.data;
   } catch (err) {
